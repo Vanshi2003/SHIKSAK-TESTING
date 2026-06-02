@@ -1,0 +1,32 @@
+name: Run Selenium Integration Tests
+
+# This allows you to manually click a button to run the tests
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-numeric-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest selenium
+
+    - name: Setup Chrome Headless
+      uses: browser-actions/setup-chrome@v1
+
+    - name: Execute Selenium Automation Suite
+      run: |
+        pytest user_authentication_integration.py -v
