@@ -17,7 +17,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-numeric-version: '3.10'
+        python-version: '3.10'
 
     - name: Install dependencies
       run: |
@@ -29,4 +29,4 @@ jobs:
 
     - name: Execute Selenium Automation Suite
       run: |
-        pytest user_authentication_integration.py -v
+        pytest vint_sit_01.py -v
